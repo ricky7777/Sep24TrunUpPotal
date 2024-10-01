@@ -1,12 +1,11 @@
 ﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
-using OpenQA.Selenium.Safari;
 using WebDriverManager;
 using WebDriverManager.DriverConfigs.Impl;
 
-internal class Program
+internal class ProgramTestCreate
 {
-    private static void Main(string[] args)
+    private static void Main2(string[] args)
     {
         new DriverManager().SetUpDriver(new ChromeConfig());
         //IWebDriver driver = new SafariDriver();
