@@ -13,10 +13,7 @@ namespace Sep24TurnUpPortal.Pages
         private readonly By LastPageButton = By.XPath("//*[@id=\"tmsGrid\"]/div[4]/a[4]/span");
         private readonly By LastRawEdit = By.XPath("//*[@id=\"tmsGrid\"]/div[3]/table/tbody/tr[last()]/td[5]/a[1]");
 
-        public HomePage(IWebDriver driver) : base(driver)
-        {
-
-        }
+        public HomePage(IWebDriver driver) : base(driver){}
 
         public void NavigationToTPMPage()
 		{
@@ -43,7 +40,7 @@ namespace Sep24TurnUpPortal.Pages
 
             // Find and click the edit button in the last row
             Wait.WaitToBeClickable(_driver, LastRawEdit);
-            _driver.FindElement(LastRawEdit).Click(); 
+            _driver.FindElement(LastRawEdit).Click();
         }
 
         public void NatigationToLastPage()

@@ -1,4 +1,5 @@
 ﻿using System;
+using NUnit.Framework;
 using OpenQA.Selenium;
 using Sep24TurnUpPortal.Utilities;
 
@@ -23,14 +24,11 @@ namespace Sep24TurnUpPortal.Pages
         private readonly By LastDeleteButton = By.XPath("//*[@id=\"tmsGrid\"]/div[3]/table/tbody/tr[last()]/td[5]/a[2]");
 
 
-        public TMPages(IWebDriver driver) : base(driver)
-        {
-
-        }
+        public TMPages(IWebDriver driver) : base(driver){}
 
         public void CreateTimeRecord()
 		{
-            string codeText = "TA Program test117";
+            string codeText = "TA Program test 917";
 
             // Wait for Administration Tab and click
             Wait.WaitToBeClickable(_driver, AdministrationTab);
@@ -76,14 +74,7 @@ namespace Sep24TurnUpPortal.Pages
             // Verify if the new record is created successfully
             Wait.WaitToBeVisible(_driver, NewCode);
             IWebElement newCodeElement = _driver.FindElement(NewCode);
-            if (newCodeElement.Text == codeText)
-            {
-                Console.WriteLine("Time record created successfully");
-            }
-            else
-            {
-                Console.WriteLine("New time has not been created!");
-            }
+            Assert.That(newCodeElement.Text == codeText, "Time record created successfully");
         }
 	
 
@@ -101,18 +92,10 @@ namespace Sep24TurnUpPortal.Pages
 
             HomePage homePageObj = new HomePage(_driver);
             homePageObj.NatigationToLastPage();
-
+            Thread.Sleep(4000);
             // Verify description text
             IWebElement lastDescriptionText = _driver.FindElement(LastDescriptionText);
-            if (lastDescriptionText.Text == modifyText)
-            {
-                Console.WriteLine("Description modify successfuly");
-            }
-            else
-            {
-                Console.WriteLine("Description modify failed");
-            }
-
+            Assert.That(lastDescriptionText.Text == "Modify", "Description modify successfuly");
         }
 
     public void DeletetimeRecord()

@@ -1,4 +1,5 @@
 ﻿using System;
+using NUnit.Framework;
 using OpenQA.Selenium;
 using Sep24TurnUpPortal.Utilities;
 
@@ -14,8 +15,7 @@ namespace Sep24TurnUpPortal.Pages
         private readonly By LoginButton = By.XPath("//*[@id=\"loginForm\"]/form/div[3]/input[1]");
         private readonly By HelloHariText = By.XPath("//*[@id=\"logoutForm\"]/ul/li/a");
 
-        public LoginPage(IWebDriver driver) : base(driver) {
-        }
+        public LoginPage(IWebDriver driver) : base(driver) {}
 
         // Functions that allow users to login the TurnUp portal
         public void LoginActions()
@@ -30,19 +30,18 @@ namespace Sep24TurnUpPortal.Pages
             passwordInput.SendKeys(Password);
 
             Wait.WaitToBeClickable(_driver, LoginButton);
+            try { 
             _driver.FindElement(LoginButton).Click();
+            }
+            catch(NotFoundException ex)
+            {
+                Assert.Fail("Login Fail:" + ex.Message);
+            }
 
             IWebElement helloHari = _driver.FindElement(HelloHariText);
 
-            if (helloHari.Text == "Hello hari!")
-            {
-                Console.WriteLine("User has logged in successfully. Test passed!");
-            }
-            else
-            {
-                Console.WriteLine("User has not logged in. Test failed!");
-            }
-
+            Assert.That(helloHari.Text == "Hello hari!", "User has logged in successfully. Test passed!");
+           
         }
 
     }
