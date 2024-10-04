@@ -12,18 +12,21 @@ namespace Sep24TurnUpPortal.Utilities
         {
             var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(timeoutInSeconds));
             wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementToBeClickable(locatorValue));
+            Thread.Sleep(1000);
         }
 
         public static void WaitToBeVisible(IWebDriver driver, By locatorValue, int timeoutInSeconds = 5)
         {
             var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(timeoutInSeconds));
             wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(locatorValue));
+            Thread.Sleep(1000);
         }
 
         public static void WaitToExist(IWebDriver driver, By locatorValue, int timeoutInSeconds = 5)
         {
             var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(timeoutInSeconds));
             wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(locatorValue));
+            Thread.Sleep(1000);
         }
     }
 }
